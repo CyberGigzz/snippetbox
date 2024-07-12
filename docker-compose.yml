@@ -1,0 +1,19 @@
+services:
+  db:
+    image: mysql:8.0  # Use the official MySQL image
+    restart: always    # Restart the container if it stops
+    environment:
+      MYSQL_ROOT_PASSWORD: password  # Set a strong root password for MySQL
+      MYSQL_USER: giga
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: snippetbox  # Create a database (optional)
+    ports:
+      - "3307:3306"    # Expose port 3306 to connect to MySQL from your host machine
+
+  adminer:
+    image: adminer      # Use the official Adminer image
+    restart: always    # Restart the container if it stops
+    environment:
+      ADMINER_DESIGN: dracula # Pick a theme - https://github.com/vrana/adminer/tree/master/designs
+    ports:
+      - "8080:8080"    # Expose port 8080 for Adminer's web interface
