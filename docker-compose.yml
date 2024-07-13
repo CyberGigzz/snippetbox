@@ -7,6 +7,8 @@ services:
       MYSQL_USER: giga
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: snippetbox  # Create a database (optional)
+    volumes:
+      - ./data/mysql:/var/lib/mysql
     ports:
       - "3307:3306"    # Expose port 3306 to connect to MySQL from your host machine
 
