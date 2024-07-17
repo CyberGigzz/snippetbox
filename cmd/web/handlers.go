@@ -20,9 +20,10 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, http.StatusOK, "home.gohtml", &templateData{
-		Snippets: snippets,
-	})
+	data := app.newTemplateData(r)
+	data.Snippets = snippets
+
+	app.render(w, http.StatusOK, "home.gohtml", data)
 }
 
 func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
@@ -33,7 +34,6 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 	}
 
 	snippet, err := app.snippets.Get(id)
-
 	if err != nil {
 		if errors.Is(err, models.ErrNoRecord) {
 			app.notFound(w)
@@ -43,10 +43,10 @@ func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	app.render(w, http.StatusOK, "view.gohtml", &templateData{
-		Snippet: snippet,
-	})
+	data := app.newTemplateData(r)
+	data.Snippet = snippet
 
+	app.render(w, http.StatusOK, "view.gohtml", data)
 }
 
 func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
