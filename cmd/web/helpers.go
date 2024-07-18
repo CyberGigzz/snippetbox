@@ -8,6 +8,17 @@ import (
 	"time"
 )
 
+
+
+func myMiddleware(next http.Handler) http.Handler {
+    fn := func(w http.ResponseWriter, r *http.Request) {
+        // TODO: Execute our middleware logic here...
+        next.ServeHTTP(w, r)
+    }
+
+    return http.HandlerFunc(fn)
+}
+
 func (app *application) render(w http.ResponseWriter, status int, page string, data *templateData) {
 	ts, ok := app.templateCache[page]
 	if !ok {
