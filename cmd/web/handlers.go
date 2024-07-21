@@ -4,8 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"snippetbox.gigakatamadze.net/internal/models"
 	"strconv"
+
+	"snippetbox.gigakatamadze.net/internal/models"
 )
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
