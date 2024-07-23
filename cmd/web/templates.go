@@ -3,14 +3,16 @@ package main
 import (
 	"html/template"
 	"path/filepath"
-	"snippetbox.gigakatamadze.net/internal/models"
 	"time"
+
+	"snippetbox.gigakatamadze.net/internal/models"
 )
 
 type templateData struct {
 	CurrentYear int
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
+	Form        any
 }
 
 func humanDate(t time.Time) string {
