@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: password  # Set a strong root password for MySQL
       MYSQL_USER: giga
       MYSQL_PASSWORD: password
-      MYSQL_DATABASE: snippetbox  # Create a database (optional)
+      MYSQL_DATABASE: snippetbox # Create a database (optional)
     volumes:
       - ./data/mysql:/var/lib/mysql
     ports:
