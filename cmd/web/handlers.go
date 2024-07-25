@@ -128,7 +128,7 @@ func (app *application) userSignupPost(w http.ResponseWriter, r *http.Request) {
 	if !form.Valid() {
 		data := app.newTemplateData(r)
 		data.Form = form
-		app.render(w, http.StatusUnprocessableEntity, "signup.gohtml", data)
+		app.render(w, http.StatusUnprocessableEntity, "signup.tmpl", data)
 		return
 	}
 
@@ -139,14 +139,16 @@ func (app *application) userSignupPost(w http.ResponseWriter, r *http.Request) {
 
 			data := app.newTemplateData(r)
 			data.Form = form
-			app.render(w, http.StatusUnprocessableEntity, "signup.tmpl", data)
+			app.render(w, http.StatusUnprocessableEntity, "signup.gohtml", data)
 		} else {
 			app.serverError(w, err)
 		}
 
 		return
 	}
+
 	app.sessionManager.Put(r.Context(), "flash", "Your signup was successful. Please log in.")
+
 	http.Redirect(w, r, "/user/login", http.StatusSeeOther)
 }
 
